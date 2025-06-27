@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit as st
 import base64 # This import is still needed
 import importlib
 
@@ -39,6 +38,7 @@ def login_form():
                     st.session_state.logged_in = True
                     st.session_state.username = username
                     st.success("A NHUNG LE MEMBER REGCONIZE !!!")
+                    st.experimental_rerun()  # <--- Add this
                 else:
                     st.error("GET TF OUT")
 def logout_button():
@@ -48,6 +48,7 @@ def logout_button():
             st.session_state.logged_in = False
             st.session_state.username = "Guest"
             st.success("YOU HAVE ESCAPE")
+            st.experimental_rerun()
     
 
 
