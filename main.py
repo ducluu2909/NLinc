@@ -25,7 +25,6 @@ if "username" not in st.session_state:
     st.session_state.username = "Guest"
 
 # login logic
-@st.cache_data
 def login_form():
     with st.sidebar:
         st.header("Login")
@@ -43,7 +42,6 @@ def login_form():
                     st.rerun()  # <--- Add this
                 else:
                     st.error("GET TF OUT")
-@st.cache_data
 def logout_button():
     with st.sidebar:
         st.write(f'logged in as {st.session_state.get("username", "Guest")}')
