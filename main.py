@@ -7,7 +7,8 @@ valid_usernames = ["nhungle", "ducchimto", "hieuslave", "datcacbe"]
 valid_passwords = ["password", "123456", "nhungle"]
 
 
-#Page logic
+#Page login
+
 def run_page(module_name):
     """Dynamically import and run the app() function from a module."""
     module = importlib.import_module(module_name)
@@ -24,6 +25,7 @@ if "username" not in st.session_state:
     st.session_state.username = "Guest"
 
 # login logic
+@st.cache_data
 def login_form():
     with st.sidebar:
         st.header("Login")
@@ -41,6 +43,7 @@ def login_form():
                     st.rerun()  # <--- Add this
                 else:
                     st.error("GET TF OUT")
+@st.cache_data
 def logout_button():
     with st.sidebar:
         st.write(f'logged in as {st.session_state.get("username", "Guest")}')
@@ -52,7 +55,7 @@ def logout_button():
     
 
 
-   
+@st.cache_data  
 def set_bg_slideshow(images, duration=10):
     """
     Sets a slideshow of images as the background for the Streamlit app.
@@ -110,7 +113,9 @@ st.set_page_config(
     initial_sidebar_state="expanded"
     
 )
-    
+
+
+
 login_form()
 
 if st.session_state.username == "Guest":
